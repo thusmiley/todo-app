@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    @apply font-josefinSans bg-[#fafafa] dark:bg-[#171823];
+  }
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+@layer components {
+  .box {
+    @apply text-[16px] flex items-center cursor-pointer md:text-[18px];
+  }
+}
+@layer utilities {
+  .copyIcon:hover path {
+    @apply fill-almostWhite duration-200;
+  }
+  .arrowIcon path {
+    @apply group-hover:fill-green;
+  }
+  .header-bg-light {
+    background: url("../public/images/bg-mobile-light.jpg") no-repeat;
+    background-size: cover;
+    background-position: top center;
+  }
+}/*# sourceMappingURL=globals.css.map */
