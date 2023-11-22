@@ -17,6 +17,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between mt-[-88px] mb-[72px]">
       <form action="" className="container px-6 mx-auto relative">
         <div className="bg-white py-[14px] px-5 rounded-[5px] mb-4">
+          <div className="w-5 h-5 rounded-full border-[1px] border-gradient-bg bg-gradient-bg" />
           <input type="text" name="" id="" placeholder="Create a new todo..." />
         </div>
 

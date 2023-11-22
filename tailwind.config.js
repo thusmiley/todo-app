@@ -14,6 +14,7 @@ module.exports = {
         grey: "#5B5E7E",
         grey94: "#9495A5",
         greyd1: "#D1D2DA",
+        purple: "#C058F3",
       },
       fontFamily: {
         josefinSans: ["Josefin Sans", "sans-serif"],
