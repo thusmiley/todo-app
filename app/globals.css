@@ -22,8 +22,33 @@
   }
 }
 @layer components {
-  .box {
-    @apply text-[16px] flex items-center cursor-pointer md:text-[18px];
+  input[type=text] {
+    @apply border-none outline-none caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] w-full truncate;
+  }
+  input[type=text]:placeholder {
+    @apply text-grey94;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-transition: background-color 5000000s ease-in-out 0s;
+    transition: background-color 5000000s ease-in-out 0s;
+    -webkit-text-fill-color: #494C6B;
+    background-clip: content-box;
+    background: #fff;
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+  }
+  input[type=checkbox] {
+    @apply w-[18px] h-[18px] border-none bg-white rounded-full outline-none appearance-none;
+    -webkit-appearance: none;
+  }
+  input[type=checkbox]:checked {
+    @apply gradient-bg w-5 h-5;
+  }
+  input[type=checkbox]:checked::before {
+    content: url("../public/images/icon-check.svg");
+    @apply absolute left-[5px] top-[-1px] md:top-[-5px];
   }
 }
 @layer utilities {
@@ -39,6 +64,6 @@
     background-position: top center;
   }
   .gradient-bg {
-    @apply bg-gradient-to-br from-lightBlue to-purple;
+    @apply bg-gradient-to-r from-lightBlue to-purple;
   }
 }/*# sourceMappingURL=globals.css.map */
