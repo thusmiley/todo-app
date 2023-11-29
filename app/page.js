@@ -1,93 +1,85 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import iconCross from "../public/images/icon-cross.svg";
-import Image from "next/image";
+import NewInputForm from "@/components/NewInputForm";
+import TodoItem from "@/components/TodoItem";
 
 export default function Home() {
-  const [isDark, setIsDark] = useState("dark");
-  const [newInput, setNewInput] = useState("");
-  const [countId, setCountId] = useState(0);
+  // const data = [{ id: 0, content: "Create your first todo!", completed: false }];
+  // const [isDark, setIsDark] = useState("dark");
   const [todos, setTodos] = useState([]);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filteredTodos, setFilteredTodos] = useState(todos);
+  const [countLeftItem, setCountLeftItem] = useState(0);
+
+  // useEffect(() => {
+  //   if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+  //     setIsDark("dark");
+  //   } else {
+  //     setIsDark("light");
+  //   }
+  // });
 
   useEffect(() => {
-    if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      setIsDark("dark");
-    } else {
-      setIsDark("light");
-    }
-  });
-  // let todoList = ["Let's get started!"];
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setCountId(countId + 1);
-    console.log(countId);
-    if (newInput) {
-      const newTodo = {
-        id: countId,
-        description: newInput.trim(),
-        completed: false,
-      };
-      setTodos([newTodo, ...todos]);
-      setNewInput("");
-    }
+    const filterTodos = () => {
+      if (filterStatus === "active") {
+        return setFilteredTodos(todos.filter((todo) => !todo.completed));
+      } else if (filterStatus === "completed") {
+        return setFilteredTodos(todos.filter((todo) => todo.completed));
+      } else if (filterStatus === "all") {
+        return setFilteredTodos(todos);
+      }
+    };
+
+    filterTodos();
+  }, [todos, filterStatus]);
+
+  useEffect(() => {
+    const todoLeft = todos.filter((todo) => !todo.completed);
+    setCountLeftItem(todoLeft.length);
+  }, [todos]);
+
+  const clearCompleted = () => {
+    setTodos(todos.filter((todo) => !todo.completed));
+    setFilterStatus("all");
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between mt-[-88px] mb-[72px]">
-      <form action="" className="container px-6 mx-auto relative" onSubmit={handleSubmit}>
-        <div className="bg-white py-[14px] px-5 rounded-[5px] mb-4 flex items-center justify-start">
-          <div className="w-[21px] h-5 rounded-full border-[1px] border-[#E3E4F1] mr-3" />
-          <input
-            type="text"
-            name="newInput"
-            id="newInput"
-            placeholder="Create a new todo..."
-            className=""
-            value={newInput}
-            onChange={(e) => {
-              setNewInput(e.target.value);
-            }}
-          />
-        </div>
+      <div className="container px-6 mx-auto relative">
+        <NewInputForm todos={todos} setTodos={setTodos} />
 
         <div className="bg-white py-[14px] px-5 rounded-[5px] w-full overflow-hidden shadow-md">
           <div className="relative">
-            {todos.map((todo) => {
-              <div key={todo.id} className="flex justify-between items-center group cursor-pointer">
-                <div className="cursor-pointer flex items-center">
-                  <div
-                    className={`${
-                      isCompleted ? "opacity-100" : "opacity-20"
-                    } w-5 h-5 gradient-bg rounded-full mr-3  flex justify-center items-center group-hover:opacity-100 transition-opacity duration-300 ease-in-out`}
-                  >
-                    <input type="checkbox" name="todo" id={`todo-${todo.id}`} className="cursor-pointer" onChange={() => setIsCompleted(!isCompleted)} />
-                  </div>
-                  <label htmlFor="todo" className="cursor-pointer text-[12px] tracking-[-.17px] text-dark49 truncate">
-                    {todo.description}
-                  </label>
-                </div>
-                <Image src={iconCross} width={12} height={12} className="hidden group-hover:block" />
-              </div>;
-            })}
-            <div className="w-[120%] border-[1px] border-[#E3E4F1] absolute bottom-[-14px] left-[-10%]" />
+            {filteredTodos.map((todo) => (
+              <TodoItem key={todo.id} todo={todo} todos={todos} setTodos={setTodos} />
+            ))}
           </div>
 
           <div className="mt-8 flex justify-between items-center">
-            <p className="text-grey94 text-[12px] tracking-[-.17px]">5 items left</p>
+            <p className="text-grey94 text-[12px] tracking-[-.17px]">
+              {countLeftItem} item<span className={`${countLeftItem > 1 ? "inline" : "hidden"}`}>s</span> left
+            </p>
             <div className="flex justify-center items-center absolute bottom-[75px] font-bold text-grey94 text-[14px] tracking-[-.19px] left-0 right-0 mx-auto space-x-[18px]">
-              <p>All</p>
-              <p>Active</p>
-              <p>Completed</p>
+              <p className={`${filterStatus === "all" ? "text-darkBlue" : ""} cursor-pointer hover:text-dark49`} onClick={() => setFilterStatus("all")}>
+                All
+              </p>
+              <p className={`${filterStatus === "active" ? "text-darkBlue" : ""} cursor-pointer hover:text-dark49`} onClick={() => setFilterStatus("active")}>
+                Active
+              </p>
+              <p className={`${filterStatus === "completed" ? "text-darkBlue" : ""} cursor-pointer hover:text-dark49`} onClick={() => setFilterStatus("completed")}>
+                Completed
+              </p>
             </div>
-            <p className="text-grey94 text-[12px] tracking-[-.17px]">Clear Completed</p>
+            <p className="text-grey94 text-[12px] tracking-[-.17px] cursor-pointer hover:text-dark49" onClick={clearCompleted}>
+              Clear Completed
+            </p>
           </div>
         </div>
         <div className="h-[48px] bg-white rounded-[5px] mt-4 shadow-md" />
 
         <p className="text-grey94 mt-10 text-center text-[14px] tracking-[-.19px]">Drag and drop to reorder list</p>
-      </form>
+      </div>
     </main>
   );
 }
