@@ -25,7 +25,7 @@
 // components
 @layer components
     input[type='text']
-        @apply border-none outline-none caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] w-full truncate
+        @apply border-none outline-none caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] w-full truncate md:text-[18px] md:tracking-[-.25px]
     input[type='text']:placeholder
         @apply text-grey94
 
@@ -39,16 +39,8 @@
         background: #fff
         -webkit-box-shadow: 0 0 0 30px #fff inset
 
-    input[type='checkbox']
-        @apply w-[18px] h-[18px] border-none bg-white rounded-full outline-none appearance-none
-        -webkit-appearance: none
-
-    input[type='checkbox']:checked
-        @apply gradient-bg w-5 h-5
-
-    input[type="checkbox"]:checked::before
+    input[type='checkbox']:checked::before
         content: url('../public/images/icon-check.svg')
-        @apply absolute left-[5px] top-[-1px] md:top-[-5px]    
 
 // utitlities
 @layer utilities
@@ -62,6 +54,10 @@
         background: url('../public/images/bg-mobile-light.jpg') no-repeat
         background-size: cover
         background-position: top center
+        @screen md
+            background: url('../public/images/bg-desktop-light.jpg') no-repeat
+            background-size: cover
+            background-position: top center
 
     .gradient-bg
         @apply bg-gradient-to-r from-lightBlue to-purple

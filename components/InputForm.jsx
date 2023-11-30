@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const NewInputForm = ({ todos, setTodos }) => {
+const InputForm = ({ todos, setTodos, setFilterStatus }) => {
   const [newInput, setNewInput] = useState("");
   const [countId, setCountId] = useState(0);
 
@@ -14,16 +14,17 @@ const NewInputForm = ({ todos, setTodos }) => {
         id: countId,
         description: newInput.trim(),
         completed: false,
+        deleted: false,
       };
       setTodos([newTodo, ...todos]);
       setNewInput("");
+      setFilterStatus("all");
     }
-    console.log(todos);
   };
 
   return (
-    <form action="" onSubmit={handleSubmit} className="bg-white py-[14px] px-5 rounded-[5px] mb-4 flex items-center justify-start">
-      <div className="w-[21px] h-5 rounded-full border-[1px] border-[#E3E4F1] mr-3" />
+    <form onSubmit={handleSubmit} className="bg-white py-[14px] px-5 rounded-[5px] mb-4 flex items-center justify-start md:py-5 md:px-6 md:mb-6">
+      <div className="w-[21px] h-5 rounded-full border-[1px] border-[#E3E4F1] mr-3 md:mr-6 md:w-[22px]" />
       <input
         type="text"
         name="new-input"
@@ -39,4 +40,4 @@ const NewInputForm = ({ todos, setTodos }) => {
   );
 };
 
-export default NewInputForm;
+export default InputForm;
