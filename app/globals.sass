@@ -13,7 +13,7 @@
         font-synthesis: none
         text-rendering: optimizeLegibility
         scroll-behavior: smooth
-        @apply font-josefinSans bg-[#fafafa] dark:bg-[#171823]
+        @apply font-josefinSans bg-[#fafafa] dark:bg-[#171823] 
 
     input,
     textarea,
@@ -25,7 +25,7 @@
 // components
 @layer components
     input[type='text']
-        @apply border-none outline-none caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] w-full truncate md:text-[18px] md:tracking-[-.25px]
+        @apply border-none outline-none bg-white dark:bg-[#25273D] caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] dark:text-[#767992] w-full truncate md:text-[18px] md:tracking-[-.25px]
     input[type='text']:placeholder
         @apply text-grey94
 
@@ -33,10 +33,10 @@
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active 
+        @apply bg-white dark:bg-[#25273D] dark:shadow-[inset_0_0_30px_#25273D] 
         transition: background-color 5000000s ease-in-out 0s
         -webkit-text-fill-color: #494C6B
         background-clip: content-box 
-        background: #fff
         -webkit-box-shadow: 0 0 0 30px #fff inset
 
     input[type='checkbox']:checked::before
@@ -59,5 +59,14 @@
             background-size: cover
             background-position: top center
 
+    .header-bg-dark
+        background: url('../public/images/bg-mobile-dark.jpg') no-repeat
+        background-size: cover
+        background-position: top center
+        @screen md
+            background: url('../public/images/bg-desktop-dark.jpg') no-repeat
+            background-size: cover
+            background-position: top center
+
     .gradient-bg
-        @apply bg-gradient-to-r from-lightBlue to-purple
+        @apply bg-gradient-to-r from-lightBlue to-purple 

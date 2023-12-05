@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import iconCross from "../public/images/icon-cross.svg";
 import Image from "next/image";
 
-const TodoItem = ({ todo, todos, setTodos }) => {
+const TodoItem = ({ todo, todos, setTodos, filteredTodos, setFilteredTodos }) => {
   const [completableTodo, setCompletableTodo] = useState(todo);
   const [deletableTodo, setDeletableTodo] = useState(todo);
 
   const toggleCompleted = () => {
-
     setCompletableTodo({ ...completableTodo, completed: !completableTodo.completed });
 
-    const updatedTodos = todos.map((item) => (item.id === todo.id ? { ...item, completed: !item.completed } : item));
+    const updatedTodos = filteredTodos.map((item) => (item.id === todo.id ? { ...item, completed: !item.completed } : item));
 
+    setFilteredTodos(updatedTodos);
     setTodos(updatedTodos);
   };
 
@@ -37,7 +37,7 @@ const TodoItem = ({ todo, todos, setTodos }) => {
             type="checkbox"
             name={`todo-${todo.id}`}
             id={`todo-${todo.id}`}
-            className="cursor-pointer w-[18px] h-[18px] border-none bg-white rounded-full outline-none appearance-none checked:gradient-bg checked:w-5 checked:h-5 grid place-content-center"
+            className="cursor-pointer w-[18px] h-[18px] border-none bg-white dark:bg-[#25273D] rounded-full outline-none appearance-none checked:gradient-bg checked:w-5 checked:h-5 grid place-content-center"
             defaultChecked={completableTodo.completed}
             onClick={toggleCompleted}
           />
@@ -45,7 +45,7 @@ const TodoItem = ({ todo, todos, setTodos }) => {
         <label
           htmlFor={`todo-${todo.id}`}
           className={`${
-            completableTodo.completed ? "text-greyd1 line-through" : "text-dark49"
+            completableTodo.completed ? "text-greyd1 line-through dark:text-darkGrey" : "text-dark49 dark:text-almostWhite"
           } cursor-pointer text-[12px] tracking-[-.17px] truncate md:text-[18px] md:tracking-[-.25px]`}
         >
           {completableTodo.description}
