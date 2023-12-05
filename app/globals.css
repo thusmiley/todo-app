@@ -23,7 +23,7 @@
 }
 @layer components {
   input[type=text] {
-    @apply border-none outline-none bg-white dark:bg-[#25273D] caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] dark:text-[#767992] w-full truncate md:text-[18px] md:tracking-[-.25px];
+    @apply border-none outline-none bg-white dark:bg-[#25273D] caret-darkBlue font-normal text-[12px] tracking-[-.17px] text-[#393A4B] dark:text-almostWhite w-full truncate md:text-[18px] md:tracking-[-.25px];
   }
   input[type=text]:placeholder {
     @apply text-grey94;
