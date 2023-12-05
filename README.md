@@ -13,12 +13,12 @@ Todo App
 
 ### Screenshot
 
-![](/public/images/preview.jpg)
+![](/public/images/desktop-preview.jpg)
 
 ### Links
 
-- Git URL: 
-- Live Site URL: 
+- Git URL: https://github.com/thusmiley/todo-app.git
+- Live Site URL: https://todo-app-omega-plum.vercel.app/
 
 ### Built with
 
