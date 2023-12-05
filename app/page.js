@@ -64,7 +64,7 @@ export default function Home() {
             <p className="text-grey94 dark:text-grey text-[12px] tracking-[-.17px] md:text-[14px] md:tracking-[-.19px] md:w-[20%]">
               {countLeftItem} item<span className={`${countLeftItem > 1 ? "inline" : "hidden"}`}>s</span> left
             </p>
-            <div className="flex justify-center items-center bg-white dark:bg-[#25273D] absolute mx-6 bottom-[75px] font-bold text-grey94 dark:text-grey text-[14px] tracking-[-.19px] left-0 right-0 mx-auto space-x-[18px] md:relative md:bottom-0 md:w-[50%] md:text-center">
+            <div className="flex justify-center items-center bg-white dark:bg-[#25273D] absolute mx-6 bottom-[75px] font-bold text-grey94 dark:text-grey text-[14px] tracking-[-.19px] left-0 right-0 space-x-[18px] md:relative md:bottom-0 md:w-[50%] md:text-center">
               <p className={`${filterStatus === "all" ? "text-darkBlue" : ""} cursor-pointer hover:text-dark49 dark:hover:text-[#E3E4F1]`} onClick={() => setFilterStatus("all")}>
                 All
               </p>
