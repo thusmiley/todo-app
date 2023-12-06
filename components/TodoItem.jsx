@@ -46,7 +46,7 @@ const TodoItem = ({ todo, todos, setTodos, filteredTodos, setFilteredTodos }) =>
           htmlFor={`todo-${todo.id}`}
           className={`${
             completableTodo.completed ? "text-greyd1 line-through dark:text-darkGrey" : "text-dark49 dark:text-almostWhite"
-          } cursor-pointer text-[12px] tracking-[-.17px] truncate md:text-[18px] md:tracking-[-.25px]`}
+          } cursor-pointer text-[12px] tracking-[-.17px] truncate whitespace-pre-line md:text-[18px] md:tracking-[-.25px]`}
         >
           {completableTodo.description}
         </label>
